@@ -4,3 +4,4 @@ wtforms
 flask_wtf
 SQLalchemy
 werkzeug
+sqlalchemy_serializer

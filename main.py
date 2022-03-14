@@ -1,3 +1,5 @@
+import os
+
 from flask import Flask, render_template, redirect, request, abort
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 
@@ -29,8 +31,8 @@ def logout():
 
 def main():
     db_session.global_init("db/blogs.db")
-    app.register_blueprint(news_api.blueprint)
-    app.run()
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
 
 
 @app.route('/news', methods=['GET', 'POST'])
@@ -137,5 +139,4 @@ def login():
 
 
 if __name__ == '__main__':
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host='0.0.0.0', port=port)
+    main()
